@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://raw.githubusercontent.com/mmanovbl/listing_validator_rules/main/schema.v1.json",
+    "title": "Listing Validator Rulepack v1",
+    "description": "Declarative marketplace rulepack consumed by the Listing Readiness Validator addon. The addon ships a closed set of validators (engine operators). A profile that only tunes an existing validator can be added without republishing the addon; a profile that needs a brand-new validator requires an engine (addon) update.",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["schema_version", "engine_version", "pack_version", "profiles"],
+    "properties": {
+        "schema_version": {
+            "type": "integer",
+            "const": 1,
+            "description": "Structure version of this file. The addon rejects a schema_version it does not understand."
+        },
+        "engine_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1,
+            "description": "Minimum validator engine the pack requires. The addon rejects a pack whose engine_version is newer than the engine it implements."
+        },
+        "pack_version": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Human-readable content version, e.g. semantic version. Shown in the audit result and settings."
+        },
+        "published_at": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "ISO-8601 publish timestamp for display only."
+        },
+        "description": {
+            "type": "string",
+            "maxLength": 500
+        },
+        "profiles": {
+            "type": "object",
+            "minProperties": 1,
+            "maxProperties": 50,
+            "description": "Marketplace profiles keyed by profile_id.",
+            "additionalProperties": { "$ref": "#/definitions/profile" }
+        }
+    },
+    "definitions": {
+        "profile": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["profile_id", "marketplace_name", "validator"],
+            "properties": {
+                "profile_id": { "type": "string", "maxLength": 60 },
+                "marketplace_name": { "type": "string", "maxLength": 120 },
+                "validator": {
+                    "type": "string",
+                    "enum": ["allegro_v1", "allegro_v2", "drmax_cz_v1"],
+                    "description": "Closed set of engine operators implemented by the addon. Any other value is rejected."
+                },
+                "integration_hints": {
+                    "type": "array",
+                    "maxItems": 20,
+                    "items": { "type": "string", "maxLength": 60 }
+                },
+                "gpsr_mode": {
+                    "type": "string",
+                    "enum": ["MANUFACTURER_CARD", "ALLEGRO_INTEGRATION", "NONE"]
+                },
+                "title": { "type": "object" },
+                "description": { "type": "object" },
+                "dimensions": { "type": "object" }
+            }
+        }
+    }
+}

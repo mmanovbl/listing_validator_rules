@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "engine_version": 1,
+  "pack_version": "1.0.0",
+  "published_at": "2026-09-18T00:00:00Z",
+  "description": "Listing Readiness Validator marketplace rulepack. Parity export of the built-in Allegro and Dr.Max CZ profiles.",
+  "profiles": {
+    "DR_MAX_CZ": {
+      "profile_id": "DR_MAX_CZ",
+      "marketplace_name": "Dr.Max CZ",
+      "validator": "drmax_cz_v1",
+      "integration_hints": [
+        "drmax",
+        "dr max",
+        "dr.max"
+      ],
+      "gpsr_mode": "MANUFACTURER_CARD",
+      "title": {
+        "min": 10,
+        "base_max": 80,
+        "extended_max": 25,
+        "forbid_all_caps": true,
+        "forbid_quotes": true,
+        "forbid_html": true,
+        "forbid_brand": true,
+        "brand_source": "manufacturer_name"
+      },
+      "description": {
+        "forbid_all_caps": true,
+        "forbid_emoji": true,
+        "forbid_urls": true,
+        "forbid_email": true,
+        "forbid_html_entities": true,
+        "forbid_css": true,
+        "forbid_javascript": true,
+        "forbid_markdown_bold": true,
+        "allowed_html_tags": [
+          "b",
+          "strong",
+          "em",
+          "i",
+          "br",
+          "p",
+          "ul",
+          "li",
+          "ol",
+          "td",
+          "tr",
+          "div",
+          "dl",
+          "dt",
+          "th",
+          "wbr",
+          "caption",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "table",
+          "colgroup",
+          "col",
+          "thead",
+          "tbody",
+          "tfoot"
+        ],
+        "structured_tags": [
+          "p",
+          "br",
+          "ul",
+          "ol",
+          "li",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "table"
+        ],
+        "warn_unstructured": true,
+        "structure_min_length": 200,
+        "warranty_regex": [
+          "\\bzáruk(?:a|y|u|ou|ách|ám|ový|ová|ové|ční|čního)?\\b"
+        ],
+        "shipping_regex": [
+          "\\bdoprav(?:a|y|u|ou|né|ného)\\b",
+          "\\bdodán(?:í|ím|ího)\\b",
+          "\\bkurýr(?:em|a|ovi)?\\b",
+          "\\bzásilkovn(?:a|y|ou)\\b",
+          "\\bpoštovn(?:é|ého)\\b",
+          "\\b(?:ppl|dpd|gls)\\b"
+        ],
+        "variant_note_regex": [
+          "poznámk.{0,50}variant",
+          "variant.{0,50}poznámk"
+        ],
+        "download_here_regex": [
+          "návod.{0,60}\\bzde\\b",
+          "stáhn(?:out|ěte|utí|ení).{0,60}\\bzde\\b"
+        ],
+        "external_review_regex": [
+          "recenz.{0,80}(?:heureka|alza|amazon|google|mall|jin[ée]ho webu|jin[ée] stránky)",
+          "hodnocen.{0,80}(?:heureka|alza|amazon|google|mall|jin[ée]ho webu|jin[ée] stránky)"
+        ],
+        "tykani_regex": [
+          "\\bty\\b",
+          "\\btv(?:ůj|oje|á|é|ou|ého|ému|ým|ých)\\b",
+          "\\bmůžeš\\b",
+          "\\bvyber si\\b",
+          "\\bdopřej si\\b",
+          "\\bužij si\\b",
+          "\\bzkus\\b",
+          "\\bvyzkoušej\\b",
+          "\\bzískej\\b",
+          "\\bobjev\\b"
+        ],
+        "marketing_regex": [
+          "\\bsleva\\b",
+          "\\bakce\\b",
+          "\\bvýprodej\\b",
+          "\\bdoprava zdarma\\b",
+          "\\bnejlevnější\\b",
+          "\\bkupte\\b",
+          "\\bobjednejte\\b"
+        ],
+        "reviews_general_regex": [
+          "\\brecenz(?:e|í|ích|emi)?\\b",
+          "\\bhodnocení zákazníků\\b"
+        ],
+        "blog_comment_regex": [
+          "\\bblog\\b",
+          "\\bkomentář(?:e|ů|ích|em)?\\b"
+        ]
+      },
+      "dimensions": {
+        "required": true,
+        "base_length_unit": "cm",
+        "base_weight_unit": "kg",
+        "drmax_length_unit": "mm",
+        "drmax_weight_unit": "g",
+        "length_parameter": "drmax_size_length",
+        "width_parameter": "drmax_size_width",
+        "height_parameter": "drmax_size_height",
+        "weight_parameter": "weight"
+      }
+    },
+    "ALLEGRO": {
+      "profile_id": "ALLEGRO",
+      "marketplace_name": "Allegro",
+      "validator": "allegro_v2",
+      "integration_hints": [
+        "allegro"
+      ],
+      "gpsr_mode": "ALLEGRO_INTEGRATION",
+      "title": {
+        "min_chars": 12,
+        "min_words": 3,
+        "max": 75,
+        "compose_variant_title": true
+      },
+      "description": {
+        "forbid_email": true,
+        "allowed_url_domains": [
+          "allegro.cz",
+          "allegro.pl",
+          "allegro.sk"
+        ],
+        "known_sales_domains": [
+          "amazon.com",
+          "amazon.de",
+          "amazon.pl",
+          "ebay.com",
+          "ebay.de",
+          "alza.cz",
+          "alza.sk",
+          "mall.cz",
+          "mall.sk",
+          "aukro.cz",
+          "bazos.cz",
+          "bazos.sk",
+          "sbazar.cz",
+          "temu.com",
+          "aliexpress.com",
+          "etsy.com"
+        ],
+        "off_platform_sale_regex": [
+          "\\b(?:nakup(?:te|ovat|ujte)?|koup(?:it|íte|te)?|objedn(?:ejte|at|áte|ávejte)?)\\b.{0,60}\\b(?:mimo allegro|na našem webu|na našem e-?shopu|v našem e-?shopu|přes náš web|přes náš e-?shop)\\b",
+          "\\b(?:na našem|v našem|přes náš)\\s+e-?shopu?\\b.{0,50}\\b(?:nakup|objedn|koup)"
+        ],
+        "external_promotion_regex": [
+          "\\bnavštiv(?:te|t)\\b.{0,40}\\b(?:náš|nás)\\b.{0,20}\\b(?:web|e-?shop)\\b",
+          "\\b(?:více|vice)\\s+(?:informací\\s+)?(?:najdete\\s+)?na\\s+(?:našem\\s+)?(?:webu|e-?shopu)\\b",
+          "\\bsledujte\\s+nás\\s+na\\s+(?:facebooku?|instagramu?|tiktoku?|youtube)\\b",
+          "\\b(?:facebook|instagram|tiktok)\\s*[:/]\\s*@?[A-Za-z0-9_.-]+"
+        ],
+        "max_bytes": 40000,
+        "byte_encoding": "utf-8",
+        "allowed_html_tags": [
+          "h1",
+          "h2",
+          "p",
+          "ul",
+          "ol",
+          "li",
+          "b"
+        ],
+        "forbid_inline_images": true,
+        "images_source": "images",
+        "special_character_encoding": {
+          "/": "&#8725;"
+        },
+        "special_character_encoding_mode": "warning"
+      }
+    }
+  }
+}
